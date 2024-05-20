@@ -2,22 +2,23 @@ import Container from '../../components/Shared/Container'
 import { Helmet } from 'react-helmet-async'
 import RoomReservation from '../../components/RoomDetails/RoomReservation'
 import Heading from '../../components/Shared/Heading'
-import useAxiosSecure from '../../hooks/useAxiosSecure'
+
 import { useQuery } from '@tanstack/react-query'
 
 import LoadingSpinner from '../../components/Shared/LoadingSpinner'
 import { useParams } from 'react-router-dom'
+import useAxiosCommon from '../../hooks/useAxiosCommon'
 
 
 const RoomDetails = () => {
-  const axiosSecure = useAxiosSecure()
+  const axiosCommon = useAxiosCommon()
 
 const {id} = useParams()
   // tenstack query
   const {data:room = {},isLoading} = useQuery({
     queryKey:['room',id],
     queryFn: async()=>{
-const {data} = await axiosSecure.get(`/room/${id}`)
+const {data} = await axiosCommon.get(`/room/${id}`)
 
 return data
     }
