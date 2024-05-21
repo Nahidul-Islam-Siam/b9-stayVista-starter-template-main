@@ -1,16 +1,26 @@
 import { Link } from 'react-router-dom'
 import { FcGoogle } from 'react-icons/fc'
+import useAuth from '../../hooks/useAuth'
 
 const SignUp = () => {
-  const handleSubmit = e =>{
+  const { createUser, signInWithGoogle, updateUserProfile} = useAuth()
+  const handleSubmit = async e =>{
     e.preventDefault()
     const form = e.target
     const name = form.name.value
     const email = form.email.value
     const password = form.password.value
     const image = form.image.files[0]
-    console.log(name,email,password)
-    console.log(image)
+
+
+try{
+  // upload image and get image url
+  
+
+}catch(err){
+console.log(err);
+}
+
   }
   return (
     <div className='flex justify-center items-center min-h-screen'>
