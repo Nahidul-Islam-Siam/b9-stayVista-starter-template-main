@@ -1,8 +1,24 @@
 import PropTypes from 'prop-types'
+import queryString from 'query-string';
 
+import { useNavigate, useSearchParams } from 'react-router-dom';
 const CategoryBox = ({ label, icon: Icon }) => {
+  const [params,setParams] = useSearchParams()
+const category = params.get('category')
+console.log(category === label);
+  const navigate = useNavigate()
+const handleClick = ()=>{
+  let currentQuery = {category: label}
+  const url = queryString.stringifyUrl({
+    url:'/',
+    query: currentQuery,
+  })
+
+  navigate(url)
+}
   return (
     <div
+    onClick={handleClick}
       className={`flex 
   flex-col 
   items-center 
