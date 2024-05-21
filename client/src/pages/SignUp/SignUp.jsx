@@ -1,11 +1,16 @@
 import { Link, useNavigate } from 'react-router-dom'
+import { TbFidgetSpinner } from "react-icons/tb";
 import { FcGoogle } from 'react-icons/fc'
 import useAuth from '../../hooks/useAuth'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 const SignUp = () => {
   const navigate = useNavigate()
-  const { createUser,loading, signInWithGoogle, updateUserProfile} = useAuth()
+  const { createUser,
+    loading,
+    setLoading,
+    signInWithGoogle, 
+   updateUserProfile} = useAuth()
   const handleSubmit = async e =>{
     e.preventDefault()
     const form = e.target
@@ -17,6 +22,7 @@ const SignUp = () => {
     formData.append('image',image)
 
 try{
+  setLoading(true)
   // upload image and get image url
   const {data} =await axios.post(`https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMGBB_API_KEY
@@ -41,6 +47,11 @@ toast.success('Signup Successful')
 console.log(err);
 toast.error(err.message)
 }
+
+
+
+
+// handle google signin
 
   }
   return (
@@ -120,7 +131,7 @@ toast.error(err.message)
               type='submit'
               className='bg-rose-500 w-full rounded-md py-3 text-white'
             >
-            {loading? 'daran vai.......':'continue'}
+            {loading? <TbFidgetSpinner className='animate-spin m-auto'/>:'continue'}
             </button>
           </div>
         </form>
