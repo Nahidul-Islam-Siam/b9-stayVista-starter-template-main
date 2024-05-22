@@ -47,12 +47,19 @@ toast.success('Signup Successful')
 console.log(err);
 toast.error(err.message)
 }
+  }
+  // handle google signin
 
-
-
-
-// handle google signin
-
+  const handleGoogleSignIn=async()=>{
+    try{
+      setLoading(true)
+     await signInWithGoogle()
+    navigate('/')
+    toast.success('Signup Successful')
+    }catch(err){
+    console.log(err);
+    toast.error(err.message)
+    }
   }
   return (
     <div className='flex justify-center items-center min-h-screen'>
@@ -142,11 +149,15 @@ toast.error(err.message)
           </p>
           <div className='flex-1 h-px sm:w-16 dark:bg-gray-700'></div>
         </div>
-        <div className='flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded cursor-pointer'>
+        
+        <button 
+        disabled={loading}
+        onClick={handleGoogleSignIn} 
+         className='disabled:cursor-not-allowed cursor-pointer flex justify-center items-center space-x-2 border m-3 p-2 border-gray-300 border-rounded '>
           <FcGoogle size={32} />
 
           <p>Continue with Google</p>
-        </div>
+        </button>
         <p className='px-6 text-sm text-center text-gray-400'>
           Already have an account?{' '}
           <Link
