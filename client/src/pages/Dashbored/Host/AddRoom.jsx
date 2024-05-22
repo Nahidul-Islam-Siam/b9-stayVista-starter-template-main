@@ -1,3 +1,4 @@
+import AddRoomForm from "../../../components/Dashboared/Sidebar/Form/AddRoomForm";
 
 
 const AddRoom = () => {
@@ -7,6 +8,7 @@ const AddRoom = () => {
 
 
             {/* Form */}
+            <AddRoomForm/>
         </div>
     );
 };

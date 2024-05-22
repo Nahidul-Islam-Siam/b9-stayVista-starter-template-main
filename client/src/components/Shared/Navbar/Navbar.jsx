@@ -1,7 +1,7 @@
 import Container from '../Container'
 import { AiOutlineMenu } from 'react-icons/ai'
 import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import useAuth from '../../../hooks/useAuth'
 import avatarImg from '../../../assets/images/placeholder.jpg'
 
@@ -69,13 +69,15 @@ const Navbar = () => {
 
                     {user ? (
                       <>
-                       <Link
+                       <NavLink
+
                         to='/dashboard'
+                        end
                       
                           className='px-4  hover:bg-neutral-100 transition font-semibold cursor-pointer'
                         >
                           Dashbord
-                        </Link>
+                        </NavLink>
                         <div
                           onClick={logOut}
                           className='px-4 py-3 hover:bg-neutral-100 transition font-semibold cursor-pointer'
