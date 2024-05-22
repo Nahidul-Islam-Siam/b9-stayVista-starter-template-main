@@ -36,7 +36,9 @@ const AuthProvider = ({ children }) => {
     return signInWithPopup(auth, googleProvider)
   }
 
+
   const resetPassword = email => {
+    console.log(email);
     setLoading(true)
     return sendPasswordResetEmail(auth, email)
   }

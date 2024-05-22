@@ -22,7 +22,7 @@ const SignUp = () => {
     formData.append('image',image)
 
 try{
-  setLoading(true)
+  setLoading(false)
   // upload image and get image url
   const {data} =await axios.post(`https://api.imgbb.com/1/upload?key=${
     import.meta.env.VITE_IMGBB_API_KEY
