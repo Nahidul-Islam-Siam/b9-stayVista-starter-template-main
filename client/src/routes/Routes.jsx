@@ -6,6 +6,7 @@ import Login from '../pages/Login/Login'
 import SignUp from '../pages/SignUp/SignUp'
 import RoomDetails from '../pages/RoomDetails/RoomDetails'
 import PrivateRoute from './PrivateRoute'
+import DashboarLayout from '../layouts/DashboarLayout'
 
 export const router = createBrowserRouter([
   {
@@ -27,10 +28,10 @@ export const router = createBrowserRouter([
   { path: '/signup', element: <SignUp /> },
   {
     path:'/dashboard',
-    element:<p>Dashboard</p>,
+    element:<DashboarLayout></DashboarLayout>,
     children:[
       {
-        
+
       }
     ]
   }
