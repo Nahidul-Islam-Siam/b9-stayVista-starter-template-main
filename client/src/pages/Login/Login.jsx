@@ -34,27 +34,22 @@ const Login = () => {
   // reset password
 
   const handleResetPassword = async () => {
+
+
+    if (!email) return toast.error("Please write your email!");
+    try {
+      await resetPassword(email)
+
+      setLoading(false);
+      toast.success(
+        "Request Success!! Check your email for further process...."
+      );
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message);
+      setLoading(false);
+    }
     console.log(email);
-    resetPassword(email)
-      .then((result) => console.log(result))
-      .catch((error) => {
-        console.log(error);
-      });
-
-    // if (!email) return toast.error("Please write your email!");
-    // try {
-    //   await resetPassword(email)
-
-    //   setLoading(false);
-    //   toast.success(
-    //     "Request Success!! Check your email for further process...."
-    //   );
-    // } catch (err) {
-    //   console.log(err);
-    //   toast.error(err.message);
-    //   setLoading(false);
-    // }
-    // console.log(email);
   };
   // handle google signin
 
