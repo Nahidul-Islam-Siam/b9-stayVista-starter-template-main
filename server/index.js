@@ -63,6 +63,19 @@ async function run() {
         })
         .send({ success: true })
     })
+
+
+//  Save a room data in db
+app.post('/room', async(req,res)=>{
+  const roomData = req.body
+  const result =await roomCollection.insertOne(roomData)
+  res.send(result)
+})
+
+
+
+
+
     // Logout
     app.get('/logout', async (req, res) => {
       try {
@@ -89,6 +102,17 @@ async function run() {
         res.send(result)
       })
 
+
+
+        // get all rooms from db
+        app.get('/my-listings/:email', async(req,res)=>{
+          const email = req.params.email
+          let query = {'host.email':email}
+        
+          const result = await roomCollection.find(query).toArray()
+          res.send(result)
+        })
+  
 
       // get a single room data from db
 

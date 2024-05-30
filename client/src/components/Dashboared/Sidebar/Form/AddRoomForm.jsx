@@ -1,10 +1,17 @@
-
+import { TbFidgetSpinner } from "react-icons/tb";
 import { categories } from "../../../Categories/CategoriesData";
 
 import { DateRange } from "react-date-range";
-const AddRoomForm = ({ dates, handleDates,handleSubmit }) => {
-
-
+const AddRoomForm = ({
+  dates,
+  handleDates,
+  handleSubmit,
+  setImagePreview,
+  imagePreview,
+  handleImage,
+  imageText,
+  loading,
+}) => {
   return (
     <div className="w-full min-h-[calc(100vh-40px)] flex flex-col justify-center items-center text-gray-800 rounded-xl bg-gray-50">
       <form onSubmit={handleSubmit}>
@@ -70,12 +77,13 @@ const AddRoomForm = ({ dates, handleDates,handleSubmit }) => {
               />
             </div>
 
-            <div className=" p-4 bg-white w-full  m-auto rounded-lg">
-              <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg">
-                <div className="flex flex-col w-max mx-auto text-center">
+            <div className=" p-4 bg-white w-full  m-auto rounded-lg ">
+              <div className="file_upload px-5 py-3 relative border-4 border-dotted border-gray-300 rounded-lg flex ">
+                <div className="flex flex-col w-max mx-auto text-center ">
                   <label>
                     <input
                       className="text-sm cursor-pointer w-36 hidden"
+                      onChange={(e) => handleImage(e.target.files[0])}
                       type="file"
                       name="image"
                       id="image"
@@ -83,9 +91,14 @@ const AddRoomForm = ({ dates, handleDates,handleSubmit }) => {
                       hidden
                     />
                     <div className="bg-rose-500 text-white border border-gray-300 rounded font-semibold cursor-pointer p-1 px-3 hover:bg-rose-500">
-                      Upload Image
+                      {imageText}
                     </div>
                   </label>
+                </div>
+              </div>
+              <div>
+                <div className="h-16 w-16">
+                  {imagePreview && <img src={imagePreview} />}
                 </div>
               </div>
             </div>
@@ -164,10 +177,15 @@ const AddRoomForm = ({ dates, handleDates,handleSubmit }) => {
         </div>
 
         <button
+          disabled={loading}
           type="submit"
           className="w-full p-3 mt-5 text-center font-medium text-white transition duration-200 rounded shadow-md bg-rose-500"
         >
-          Save & Continue
+          {loading ? (
+            <TbFidgetSpinner className="animate-spin m-auto" />
+          ) : (
+            " Save & Continue"
+          )}
         </button>
       </form>
     </div>
