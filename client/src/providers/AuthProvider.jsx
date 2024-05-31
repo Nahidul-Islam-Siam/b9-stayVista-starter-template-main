@@ -74,6 +74,7 @@ const AuthProvider = ({ children }) => {
       role:'guest',
       status:'Verified'
     }
+  
     const {data} = await axios.put(`${import.meta.env.VITE_API_URL}/user`,currentUser)
     return data
 
