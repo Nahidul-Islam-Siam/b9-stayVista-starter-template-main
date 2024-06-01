@@ -1,16 +1,18 @@
 import { useState } from "react";
 import { GrLogout } from "react-icons/gr";
 import { FcSettings } from "react-icons/fc";
-import { BsFillHouseAddFill, BsFingerprint } from "react-icons/bs";
-import { GrUserAdmin } from "react-icons/gr";
+
 import { AiOutlineBars } from "react-icons/ai";
 import { BsGraphUp } from "react-icons/bs";
-import { NavLink } from "react-router-dom";
+
 import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router-dom";
-import { MdHomeWork } from "react-icons/md";
+
 import useRule from "../../../hooks/useRole";
-import MenuItem from "./MenuItems/MenuItem";
+import MenuItem from "./Menu/MenuItem";
+import HostMenu from "./Menu/HostMenu";
+import GuestMenu from "./Menu/GhestMenu";
+import AdminMenu from "./Menu/AdminMenu";
 
 const Sidebar = () => {
   const { logOut } = useAuth();
@@ -80,22 +82,9 @@ const Sidebar = () => {
                 icon={BsGraphUp}
               />
               {/* Statistics */}
-        
-
-              {/* Add Room */}
-              <MenuItem
-                label="Add Room"
-                address="add-room"
-                icon={BsFillHouseAddFill }
-              />
-            
-              {/* My Listing */}
-              <MenuItem
-                label="My Listing"
-                address="my-listings"
-                icon={MdHomeWork}
-              />
-        
+              {role === "guest" && <GuestMenu />}
+              {role === "host" && <HostMenu />}
+              {role === "admin" && <AdminMenu />}
             </nav>
           </div>
         </div>
@@ -105,11 +94,11 @@ const Sidebar = () => {
 
           {/* Profile Menu */}
           <MenuItem
-                label="Profile"
-                address="/dashboard/profile"
-                icon={FcSettings}
-              />
-     
+            label="Profile"
+            address="/dashboard/profile"
+            icon={FcSettings}
+          />
+
           <button
             onClick={logOut}
             className="flex w-full items-center px-4 py-2 mt-5 text-gray-600 hover:bg-gray-300   hover:text-gray-700 transition-colors duration-300 transform"
